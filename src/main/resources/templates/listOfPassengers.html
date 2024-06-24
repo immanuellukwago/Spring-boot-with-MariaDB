@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+        .delete-button{
+            background-color: lightcoral;
+            padding: 8px;
+        }
+    </style>
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>All The Passengers</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Passenger ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Booking Date</th>
+          <th scope="col">Fare</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="passenger: ${list}">
+          <td th:text="${passenger.passengerId}"></td>
+          <td th:text="${passenger.firstName}"></td>
+          <td th:text="${passenger.lastName}"></td>
+          <td th:text="${passenger.destination}"></td>
+          <td th:text="${passenger.bookingDate}"></td>
+          <td th:text="${passenger.fare}"></td>
+          <td>
+            <a
+              th:href="@{/delete/{id}(id=${passenger.passengerId})}"
+            >
+              <button th:class="delete-button">Delete</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <a th:href="@{/home}">Register New Passenger</a>
+  </body>
+</html>
